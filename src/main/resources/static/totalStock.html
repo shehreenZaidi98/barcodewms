@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product In Stocks</title>
+    <link rel="stylesheet" href="libs/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="libs/toastify.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="getTotalStockManagementData()">
+<nav style="border-bottom:1px solid #333 ;">
+    <h6 class="float-left">Medicine Stock</h6>
+    <button class="btn float-right my-1 mr-3" style="color: #fff;border-radius:20px;font-family: Calibri;"
+            onclick="location.href='login.html'"
+    >
+        <b>Logout<i class="fas fa-sign-out-alt ml-2"></i></b>
+    </button>
+</nav>
+<div class="sideNavbar" style="max-height:100%;overflow-y:auto">
+    <ul>
+        <li class="sideActive" style="max-height:100%;overflow-y:auto">
+            <a href="index.html">
+                <i class="fas fa-chart-network mr-2"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class>
+            <a href="excelImport.html">
+                <i class="fas fa-file-excel mr-2"></i>
+                <span>Upload Product</span>
+            </a>
+        </li>
+        <li class>
+            <a href="todayStock.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Stock In</span>
+            </a>
+        </li>
+        <li class>
+            <a href="stockOut.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Stock Out</span>
+            </a>
+        </li>
+        <li class>
+            <a href="totalStock.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Total Stock</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="wrapper py-4">
+    <div class="container-fluid">
+        <div class="myBox" style="width: auto;">
+            <h4 class="mb-3">Total Stock</h4>
+            <div class="table-responsive">
+                <table class="myTable">
+                    <thead>
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Name Of Item</th>
+                        <th>No.Of Pcs</th>
+                        <th>Per Pcs Weight</th>
+                        <th>Packaging</th>
+                        <th>Cartoon Gross Weight</th>
+                        <th>Hsn</th>
+                    </tr>
+                    </thead>
+                    <tbody id="todayStockTable">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+<!--<script src="api.js"></script>-->
+
+<script src="totalStock.js"></script>
+<script type="text/javascript" src="libs/toastify.js"></script>
+</body>
+
+</html>

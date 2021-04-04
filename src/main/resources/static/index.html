@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Medicine Stock</title>
+    <link rel="stylesheet" href="libs/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="libs/toastify.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="getDashboardData">
+<nav style="border-bottom:1px solid #333 ;">
+    <h6 class="float-left">Medicine Stock</h6>
+    <button class="btn float-right my-1 mr-3" style="color: #fff;border-radius:20px;font-family: Calibri;"
+            onclick="location.href='login.html'"
+    >
+        <b>Logout<i class="fas fa-sign-out-alt ml-2"></i></b>
+    </button>
+</nav>
+<div class="sideNavbar" style="max-height:100%;overflow-y:auto">
+    <ul>
+
+        <li class="sideActive" style="max-height:100%;overflow-y:auto">
+            <a href="index.html">
+                <i class="fas fa-chart-network mr-2"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class>
+            <a href="excelImport.html">
+                <i class="fas fa-file-excel mr-2"></i>
+                <span>Upload Product</span>
+            </a>
+        </li>
+        <li class>
+            <a href="todayStock.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Stock In</span>
+            </a>
+        </li>
+        <li class>
+            <a href="stockOut.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Stock Out</span>
+            </a>
+        </li>
+        <li class>
+            <a href="totalStock.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Total Stock</span>
+            </a>
+        </li>
+
+        <!--<li class="sideActive">
+            <a href="index.html">
+                <i class="fas fa-chart-network mr-2"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="header" style="line-height:60%">
+            <span>Stock Management</span>
+        </li>
+        <li class>
+            <a href="addItem.html">
+                <i class="fas fa-prescription-bottle-alt mr-2"></i>
+                <span style="line-height:5%;font-size:13px;">Add Medicines</span>
+            </a>
+        </li>
+        <li class>
+            <a href="stockManagement.html">
+                <i class="fas fa-store mr-2"></i>
+                <span>Add Stock</span>
+            </a>
+        </li>
+        <li class>
+            <a href="todayStock.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Today Stock</span>
+            </a>
+        </li>
+        <li class>
+            <a href="totalStock.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span >Total Stock</span>
+            </a>
+        </li>
+
+
+        <li class="header" style="line-height:60%">
+            <span >Give Medicine</span>
+        </li>
+        <li class>
+            <a href="makeOrder.html">
+                <i class="fas fa-rupee-sign mr-2"></i>
+                <span>Make Billed</span>
+            </a>
+        </li>
+        <li class>
+            <a href="medicineReturn.html">
+                <i class="fas fa-undo mr-2"></i>
+                <span>Return Medicine</span>
+            </a>
+        </li>
+        <li class>
+            <a href="patientMedicineReturn.html">
+                <i class="fas fa-undo mr-2"></i>
+                <span>Return Medicine List</span>
+            </a>
+        </li>
+        <li class>
+            <a href="in.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Today Billed</span>
+            </a>
+        </li>
+        <li class>
+            <a href="totalProductionIn.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Total Billed</span>
+            </a>
+        </li>
+        <li class="header" style="line-height:60%">
+            <span>Vendor</span>
+        </li>
+
+        <li class>
+            <a href="vendorRegistration.html">
+                <i class="fas fa-cash-register mr-2"></i>
+                <span style="font-size:13px;">Vendor Registration</span>
+            </a>
+        </li>
+
+
+        <li class>
+            <a href="vendorReturn.html">
+                <i class="fas fa-undo mr-2"></i>
+                <span>Vendor Return</span>
+            </a>
+        </li>
+        <li class>
+            <a href="productReturn.html">
+                <i class="fas fa-list-ul  mr-2"></i>
+                <span>Product Return</span>
+            </a>
+        </li>
+
+        <li class="header" style="line-height:60%">
+            <span>Configuration</span>
+        </li>
+        <li class>
+            <a href="excelImport.html">
+                <i class="fas fa-file-excel mr-2"></i>
+                <span>Upload Medicine</span>
+            </a>
+        </li>
+        <li class>
+            <a href="threshold.html">
+                <i class="fas fa-cog mr-2"></i>
+                <span>Set Threshold</span>
+            </a>
+        </li>-->
+
+    </ul>
+</div>
+<div class="wrapper py-1">
+    <div class="container-fluid">
+        <div class="row py-3">
+            <div class="col-sm-6" style="border-right:1px solid #ddd">
+                <h3  class="font-weight-bold text-center">IN</h3>
+                <div style="display:flex">
+                    <div class="smallBox in shadow-sm">
+                        <div><h5>Today's <br>Stock</h5><img src="stock.svg" height="30px"> </div>
+                        <div><h5 id="todaySTCount"></h5></div>
+                    </div>
+                    <div class="smallBox in shadow-sm">
+                        <div><h5>Total <br>Stock</h5><img src="stock.svg" height="30px"> </div>
+                        <div><h5 id="totalSTCount"></h5></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h3 class="font-weight-bold text-center">OUT</h3>
+                <div style="display:flex">
+                    <div class="smallBox out shadow-sm">
+                        <div><h5>Today's <br>Out</h5><img src="proIN.svg" height="30px"> </div>
+                        <div><h5 id="todayPTCount"></h5></div>
+                    </div>
+                    <div class="smallBox out shadow-sm">
+                        <div><h5>Total <br>Out</h5><img src="proIN.svg" height="30px"> </div>
+                        <div><h5 id="totalPTCount"></h5></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="orderPlace p-4" style="border-top:1px solid #ddd">
+    <h3 class="text-center my-2">Expiry Product</h3>
+    <div class="table-responsive">
+        <table class="myTable">
+            <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Vendor Name</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Check</th>
+            </tr>
+            </thead>
+            <tbody id="orderTable">
+
+            </tbody>
+        </table>
+    </div>
+    <button class="myBtn float-right bg-theme text-light font-weight-bold" onclick="insertOrder()"> Make Order </button>
+
+</div>
+<script src="script.js"></script>
+<script src="newapi.js"></script>
+<script src="api.js"></script>
+<script src="threshold.js"></script>
+<script src="increase.js"></script>
+<script src="index.js"></script>
+<!--    <script src="newThreshold.js"></script>-->
+<script type="text/javascript" src="libs/toastify.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Invoice</title>
+    <link rel="stylesheet" href="libs/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="libs/toastify.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/s.css">
+
+    <style>
+    #yourBtn {
+  position: relative;
+
+  font-family: calibri;
+  width: 150px;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border: 1px dashed #BBB;
+  text-align: center;
+  background-color: #DDD;
+  cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+<nav style="border-bottom:1px solid #333 ;" width="100%" id="nav">
+    <h6 class="float-left">WMS</h6>
+    <button class="btn float-right my-1 mr-3" style="color: #fff;border-radius:20px;font-family: Calibri;"
+            onclick="location.href='login.html'"
+    >
+        <b>Logout<i class="fas fa-sign-out-alt ml-2"></i></b>
+    </button>
+</nav>
+<div class="sideNavbar" id="side" style="max-height:100%;overflow-y:auto">
+    <ul>
+
+        <li class="sideActive" style="max-height:100%;overflow-y:auto">
+            <a href="index.html">
+                <i class="fas fa-chart-network mr-2"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class>
+            <a href="excelImport.html">
+                <i class="fas fa-file-excel mr-2"></i>
+                <span>Upload Product</span>
+            </a>
+        </li>
+        <li class>
+            <a href="todayStock.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Stock In</span>
+            </a>
+        </li>
+        <li class>
+            <a href="stockOut.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Stock Out</span>
+            </a>
+        </li>
+        <li class>
+            <a href="totalStock.html">
+                <i class="fas fa-list-ul mr-2"></i>
+                <span>Total Stock</span>
+            </a>
+        </li>
+
+
+    </ul>
+</div>
+<div class="wrapper py-4" id="d1">
+    <div class="content" >
+        <div class="container">
+            <div class="container-fluid">
+                <!-- <div class="myBox">-->
+                <div class="jumbotron" style="background: #D8D4D4;">
+                    <h1 class="pb-5 text-center">Upload Product</h1>
+                    <div class="file-upload pb-5 "align="center">
+                        <!-- <div class="file-select" align="center">
+                             <div class="file-select-button " id="fileName"></div>
+
+                             <input type="file"  name="chooseFile" id="chooseFile">
+                         </div>-->
+                        <div id="yourBtn" onclick="getFile()">Click To Upload A File</div>
+                        <!-- this is your file input tag, so i hide it!-->
+                        <!-- i used the onchange event to fire the form submission-->
+                        <div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" type="file" value="upload" onchange="sub(this)" /></div>
+                        <!-- here you can have file submit button or you can write a simple script to upload the file automatically-->
+                        <!-- <input type="submit" value='submit' > -->
+                    </div>
+                    <br>
+                    <div class="row text-center py-2">
+                        <button class="btn bg-theme text-light mx-auto" style="background-color:black;border-color:blue; text-align:center " onclick="uploadSingleFile()">Submit</button>
+                    </div>
+                    <!--<div class="row text-center py-2">
+                    <button class="btn btn-success  " onclick="uploadSingleFile()">submit</button>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="flex">
+            <h4 class="mb-4">Stock Management</h4>
+            <select class="myselect">
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="this_month">This month</option>
+                <option value="this_year">This year</option>
+            </select>
+        </div>-->
+        <!-- <div class="my-3 inputDiv" style="display: flex; justify-content: space-between; align-items: center;">
+             <div>
+                 <input type="text" id="patientName"  placeholder="Patient Name" class="field" readonly>
+             </div>
+             <div>
+                 <input type="text" id="age" placeholder="Age" class="field" readonly>
+             </div>
+             <div>
+                 <input type="text" id="phoneNumber" placeholder="Phone Number" class="field" max="" min="0">
+             </div>
+             <div>
+                 <input type="text" id="billNo" value=""  placeholder="Bill No." class="field" readonly>
+             </div>
+
+
+         </div>-->
+
+
+        <!-- <div class="my-3 inputDiv text-center" >
+
+             <div>
+                 <input type="text" id="scanBarcode" oninput="ScanBarcode()"  placeholder="Scan Product Code" value="" class="field" autofocus>
+             </div>
+         </div>-->
+        <!--   <div class="table-responsive">
+               <table class="myTable" id="table">
+                   <thead>
+                   <tr>
+                       <th>Sr No.</th>
+                       <th>Product Code</th>
+                       <th>Product Name</th>
+                       <th>Price</th>
+                       <th>Quantity</th>
+                       <th>Remove</th>
+                   </tr>
+                   </thead>
+                   <tbody id="productTable">
+                   </tbody>
+               </table>
+           &lt;!&ndash;</div>
+           <div class="row text-center py-2">
+               <button class="btn bg-theme text-light mx-auto" style="background-color:black;border-color:blue" onclick="putData()">Submit</button>
+           </div>&ndash;&gt;
+       </div>-->
+    </div>
+</div>
+
+
+<!--<div id="myPopup"  class="shadow-lg">
+    <div class="popupHeader" style="display: flex;justify-content: space-between;align-items: center;">
+        <h6 class="font-weight-bold mt-1">ADD ITEMS</h6>
+        <i class="fas fa-times" onclick="closePopup()"></i>
+    </div>
+    <div class="popupBody">
+        <div class="my-3 flexSep">
+            <label >Barcode</label>
+            <input type="text" id="barcode"  placeholder="Enter barcode" value="" class="field" readonly>
+        </div>
+        <div class="my-3 flexSep">
+            <label>Product Name</label>
+            <input type="text" id="productName"  placeholder="Enter product name" class="field" readonly>
+        </div>
+
+        <div class="my-3 flexSep">
+            <label>Price</label>
+            <input type="number" id="price" placeholder="Enter Price" class="field" readonly>
+        </div>
+        <div class="my-3 flexSep">
+            <label>Quantity</label>
+            <input type="number" id="quantity" placeholder="Enter quantity" class="field" >
+        </div>
+
+        <div class="my-3 text-right">
+            <button type="button" id="add" onclick="validationAll()" >submit</button>
+        </div>
+    </div>
+</div>-->
+<!--<div id="backCover" ></div>-->
+</div>
+<script type="text/javascript" src="libs/toastify.js"></script>
+<!--<script src="stockManagement.js"></script>-->
+
+<script>
+ document.styleSheets[4].disabled = true;
+function getFile() {
+  document.getElementById("upfile").click();
+}
+function sub(obj) {
+  var file = obj.value;
+  var fileName = file.split("\\");
+  document.getElementById("yourBtn").innerHTML = fileName[fileName.length - 1];
+  event.preventDefault();
+}
+</script>
+<script src="excelImport.js"></script>
+</body>
+
+</html>

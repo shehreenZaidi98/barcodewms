@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD THRESHOLD</title>
+    <link rel="stylesheet" href="libs/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="libs/toastify.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<nav style="border-bottom:1px solid #333 ;">
+    <h6 class="float-left">Medicine Stock</h6>
+    <button class="btn float-right my-1 mr-3" style="color: #fff;border-radius:20px;font-family: Calibri;"
+            onclick="location.href='login.html'">
+        <b>Logout<i class="fas fa-sign-out-alt ml-2"></i></b>
+    </button>
+</nav>
+<div class="sideNavbar"style="max-height:100%;overflow-y:auto">
+    <ul>
+        <li class="sideActive" style="max-height:100%;overflow-y:auto">
+            <a href="excelImport.html">
+                <i class="fas fa-chart-network mr-2"></i>
+                <span>Upload Product</span>
+            </a>
+        </li>
+
+        <li class="sideActive" style="max-height:100%;overflow-y:auto">
+            <a href="addItem.html">
+                <i class="fas fa-chart-network mr-2"></i>
+                <span>Add Product</span>
+            </a>
+        </li>
+
+
+    </ul>
+</div>
+<div class="wrapper py-4">
+    <div class="container-fluid">
+        <div class="myBox">
+            <h4 class="mb-3">ADD PRODUCT</h4>
+            <div class="ThresholdForm">
+                <div class="my-3">
+                    <input list="select1" id="vendor"  style="width:248px" class="field" value="" placeholder="Vendor Name">
+                    <datalist id="select1">
+                    </datalist>
+                </div>
+                <div class="my-3">
+                    <input type="number" style="width:248px" id="weight"
+                           placeholder="Enter per pcs weight" value="" class="field">
+                </div>
+
+                <div class="my-3">
+                    <input type="number" style="width:248px" id="packaging"
+                           placeholder="Packaging" value="" class="field">
+                </div>
+                <div class="my-3">
+                    <input type="number" style="width:248px" id="netWeight"
+                           placeholder="Enter Net Weight" value="" class="field">
+                </div>
+                <div class="my-3">
+                    <input type="number" style="width:248px" id="grossWeight"
+                           placeholder="Enter Gross Weight" value="" class="field">
+                </div>
+
+                <div class="my-3">
+
+                    <input type="submit" id="submitThreshold" onclick="addBarcode()" value="ADD"
+                           class="myBtn bg-theme text-light">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+<script src="addBarcode.js"></script>
+<!--
+    <script src="threshold.js"></script>
+-->
+<script type="text/javascript" src="libs/toastify.js"></script>
+
+</body>
+
+</html>
