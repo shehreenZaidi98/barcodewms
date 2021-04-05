@@ -106,7 +106,7 @@ public class AddProductController {
             addProductModels1.add(addProductModel);}
         }
         HashMap<String, List<AddProductModel>> hMap=new HashMap<>();
-        hMap.put("sum",addProductModels1);
+        hMap.put("Stock",addProductModels1);
         return hMap;
 
 
@@ -260,131 +260,28 @@ public class AddProductController {
 
     }
 
+    @GetMapping("getXmlModelData")
+    public Map<String, List<XmlModel>>getXmlData(){
+        Set<String> xmlModels=addProductRepo.getNameOfItem();
+        List<XmlModel>xmlModels1=new ArrayList<>();
+        for(String nameOfProduct:xmlModels){
+            int noOfPcs=addProductRepo.sumOfQuantity(nameOfProduct);
+            List<AddProduct> addProduct=addProductRepo.getDataWithNameOfItem(nameOfProduct);
+            if(addProduct.size()>0){
+                XmlModel xmlModel=new XmlModel(addProduct.get(0).getName_of_item(),noOfPcs);
 
- /*   @GetMapping("/generateProdExcel")
-    public void createProductionSheet(HttpServletResponse response1, @RequestParam("date") String date,
-                                      @RequestParam("to") String to)
-            throws IOException {
-        Workbook workbook = new HSSFWorkbook();
-        HSSFCellStyle style1 = (HSSFCellStyle) workbook.createCellStyle();
-        CellStyle style0 = workbook.createCellStyle();
-
-        style0.setVerticalAlignment(VerticalAlignment.CENTER);
-        style0.setAlignment(HorizontalAlignment.CENTER);
-        ;
-        style0.setBorderBottom(BorderStyle.THIN);
-        style0.setBorderTop(BorderStyle.THIN);
-        style0.setBorderLeft(BorderStyle.THIN);
-        style0.setBorderRight(BorderStyle.THIN);
-
-
-        style1.setAlignment(HorizontalAlignment.CENTER);
-        style1.setVerticalAlignment(VerticalAlignment.CENTER);
-        style1.setBorderBottom(BorderStyle.THIN);
-        style1.setBorderTop(BorderStyle.THIN);
-        style1.setBorderLeft(BorderStyle.THIN);
-        style1.setBorderRight(BorderStyle.THIN);
-
-        org.apache.poi.ss.usermodel.Font font = workbook.createFont();
-        font.setBold(true);
-        font.setFontHeightInPoints((short) 10);
-
-        org.apache.poi.ss.usermodel.Font font1 = workbook.createFont();
-        font1.setFontHeightInPoints((short) 10);
-
-        style0.setFont((org.apache.poi.ss.usermodel.Font) font);
-        style0.setWrapText(true);
-
-        style1.setFont((org.apache.poi.ss.usermodel.Font) font1);
-        style1.setWrapText(true);
-
-
-        try {
-
-
-            List<FilterQty> todat_list = filterQtyRepo.getAllData(date, to);
-            try {
-                Sheet sheet1 = workbook.createSheet("Today's Data");
-                sheet1.setColumnWidth(0, 5000);
-                sheet1.setColumnWidth(5, 5000);
-                sheet1.setColumnWidth(4, 5000);
-                sheet1.setColumnWidth(3, 5000);
-                sheet1.setColumnWidth(2, 5000);
-                sheet1.setColumnWidth(1, 5000);
-
-
-                Row row0 = sheet1.createRow(0);
-                row0.setHeight((short) 600);
-
-                Cell cell0 = row0.createCell(0);
-                Cell cell1 = row0.createCell(1);
-                Cell cell2 = row0.createCell(2);
-                Cell cell3 = row0.createCell(3);
-                Cell cell4 = row0.createCell(4);
-                Cell cell5 = row0.createCell(5);
-
-
-                cell0.setCellStyle(style0);
-                cell1.setCellStyle(style0);
-                cell2.setCellStyle(style0);
-                cell3.setCellStyle(style0);
-                cell5.setCellStyle(style0);
-                cell4.setCellStyle(style0);
-
-
-                cell0.setCellValue("name_of_item");
-                cell1.setCellValue("no_of_pcs");
-                cell2.setCellValue("per_pcs_weight");
-                cell3.setCellValue("packaging");
-                cell4.setCellValue("carton_gross_weight");
-                cell5.setCellValue("carton_gross_weight");
-
-
-                int j = 1;
-                for (FilterQty fq : todat_list) {
-
-                    System.out.println("bay no " + fq.getBay());
-                    Row row1 = sheet1.createRow(j++);
-
-
-                    Cell cell11 = row1.createCell(0);
-                    Cell cell12 = row1.createCell(1);
-                    Cell cell13 = row1.createCell(2);
-                    Cell cell14 = row1.createCell(3);
-                    Cell cell15 = row1.createCell(4);
-                    Cell cell16 = row1.createCell(5);
-
-
-                    cell11.setCellStyle(style1);
-                    cell12.setCellStyle(style1);
-                    cell13.setCellStyle(style1);
-                    cell14.setCellStyle(style1);
-
-                    cell16.setCellStyle(style1);
-                    cell15.setCellStyle(style1);
-
-
-                    cell11.setCellValue(j - 1);
-                    cell12.setCellValue(fq.getDate());
-                    cell13.setCellValue(fq.getBay());
-                    cell14.setCellValue(fq.getSku());
-                    cell15.setCellValue(fq.getBatch_no());
-                    cell16.setCellValue(fq.getQty());
-                    cell17.setCellValue(fq.getLine_no());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+                xmlModels1.add(xmlModel);}
         }
+        HashMap<String, List<XmlModel>> hMap=new HashMap<>();
+        hMap.put("sum",xmlModels1);
+        return hMap;
 
 
-        response1.setHeader("content-disposition", "attachment;filename=Production Report_" + date + ".xls");
-        workbook.write(response1.getOutputStream());
     }
-    */
+
+
+
+
 
 
 }
